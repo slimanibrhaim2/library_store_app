@@ -54,6 +54,10 @@ defmodule LibraryStoreAppWeb.Router do
       on_mount: [{LibraryStoreAppWeb.UserAuth, :require_authenticated}] do
       live "/users/settings", UserLive.Settings, :edit
       live "/users/settings/confirm-email/:token", UserLive.Settings, :confirm_email
+
+      # Book routes - require authentication
+      live "/books", BookLive.Index, :index
+      live "/books/:id", BookLive.Show, :show
     end
 
     post "/users/update-password", UserSessionController, :update_password

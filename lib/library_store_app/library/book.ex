@@ -9,16 +9,17 @@ defmodule LibraryStoreApp.Library.Book do
     field :cover_url, :string
     field :published_year, :integer
     field :isbn, :string
-    field :user_id, :id
+
+    many_to_many :favorited_by, LibraryStoreApp.Accounts.User,
+      join_through: LibraryStoreApp.Library.Favorite
 
     timestamps(type: :utc_datetime)
   end
 
   @doc false
-  def changeset(book, attrs, user_scope) do
+  def changeset(book, attrs) do
     book
     |> cast(attrs, [:title, :author, :description, :cover_url, :published_year, :isbn])
-    |> validate_required([:title, :author, :description, :cover_url, :published_year, :isbn])
-    |> put_change(:user_id, user_scope.user.id)
+    |> validate_required([:title, :author])
   end
 end
