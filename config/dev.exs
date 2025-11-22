@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :library_store_app, LibraryStoreApp.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "sliman",
   hostname: "localhost",
   database: "library_store_app_dev",
   stacktrace: true,
